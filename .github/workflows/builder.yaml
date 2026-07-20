@@ -26,18 +26,24 @@ jobs:
       - name: "Setting up Docker Buildx"
         uses: docker/setup-buildx-action@v4
 
+      - name: "Docker Image Metadata"
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: cesarleonc/custom_spark
+          tags: |
+            type=semver,pattern=1.0.0
+            type=sha
+          labels: |
+            org.opencontainers.image.title="MLSpark"
+            org.opencontainers.image.version="1.0.0"
+            org.opencontainers.image.description="Spark with ML dependencies"
+            org.opencontainers.image.authors="César León"
+
       - name: "Build the Docker Image"
         uses: docker/build-push-action@v7
         with:
           push: true
           file: common_spark.Dockerfile
-          tags: cesarleonc/custom_spark:1.0.0
-
-      - name: "Docker Image Metadata"
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          tags: |
-            org.opencontainers.image.title="MLSpark"
-            org.opencontainers.image.description="Spark with ML dependencies"
-            org.opencontainers.image.authors="César León"
+          tags: ${{ steps.meta.output.tags }}
+          labels: ${{ steps.meta.output.labels }}
