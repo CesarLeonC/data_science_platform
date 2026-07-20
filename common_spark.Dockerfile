@@ -7,12 +7,12 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt && ls -al /usr/local/lib
-RUN ls -al /usr/local
+RUN pip install --no-cache-dir -r requirements.txt && \
+    ls -al /usr/local/lib
 
 FROM spark:3.5.3-scala2.12-java17-python3-ubuntu
 
-COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 USER spark
