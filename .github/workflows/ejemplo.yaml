@@ -13,4 +13,3 @@ jobs:
         run: |
           echo "Hello, World!"
           echo "Nuevo workflow"
-          tree /var
