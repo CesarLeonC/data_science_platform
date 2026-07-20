@@ -38,6 +38,6 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           tags: |
-            org.opencontainers.image.title=MLSpark
-            org.opencontainers.image.description=Spark with ML dependencies
-            org.opencontainers.image.authors=César León
+            org.opencontainers.image.title="MLSpark"
+            org.opencontainers.image.description="Spark with ML dependencies"
+            org.opencontainers.image.authors="César León"
