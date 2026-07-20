@@ -32,3 +32,12 @@ jobs:
           push: true
           file: common_spark.Dockerfile
           tags: cesarleonc/custom_spark:1.0.0
+
+      - name: "Docker Image Metadata"
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          tags: |
+            org.opencontainers.image.title=MLSpark
+            org.opencontainers.image.description=Spark with ML dependencies
+            org.opencontainers.image.authors=César León
